@@ -20,7 +20,19 @@
   src="https://code.jquery.com/jquery-3.2.1.js"></script>
 		
 		<script type="text/javascript">
-        
+        document.addEventListener("backbutton", function(e){
+    <!-- if($.mobile.activePage.is('#homepage')){ -->
+        /* 
+         Event preventDefault/stopPropagation not required as adding backbutton
+          listener itself override the default behaviour. Refer below PhoneGap link.
+        */
+        //e.preventDefault();
+        navigator.app.exitApp();
+    <!-- } -->
+    <!-- else { -->
+        <!-- navigator.app.backHistory() -->
+    <!-- } -->
+}, false);
      function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");

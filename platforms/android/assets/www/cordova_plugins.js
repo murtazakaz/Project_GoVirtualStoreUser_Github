@@ -277,6 +277,14 @@ module.exports = [
         "merges": [
             "navigator.notification"
         ]
+    },
+    {
+        "id": "cordova-plugin-spinner.SpinnerPlugin",
+        "file": "plugins/cordova-plugin-spinner/www/spinner-plugin.js",
+        "pluginId": "cordova-plugin-spinner",
+        "clobbers": [
+            "SpinnerPlugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -293,7 +301,8 @@ module.exports.metadata =
     "cordova-plugin-inappbrowser": "1.7.1",
     "cordova-plugin-camera": "2.4.1",
     "cordova-plugin-compat": "1.1.0",
-    "cordova-plugin-dialogs": "1.3.3"
+    "cordova-plugin-dialogs": "1.3.3",
+    "cordova-plugin-spinner": "1.1.0"
 };
 // BOTTOM OF METADATA
 });

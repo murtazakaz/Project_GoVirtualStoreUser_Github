@@ -113,6 +113,7 @@
 function getflightname(carrier_name1)
 {
 
+
  $.ajax({
                 type: "GET",
                 url: "https://iatacodes.org/api/v6/airlines.jsonp?api_key=a33d6719-c3bb-469c-8747-12da8ff944f3&code="+carrier_name1+"",
@@ -135,27 +136,27 @@ function getflightname(carrier_name1)
 
 function bookflight(book_flight_details)
 {   
-alert(book_flight_details);
- navigator.notification.alert('details: ' + book_flight_details, null, 'Capture Error');
 
-	 <!-- $.ajax({ -->
-                    <!-- type: "POST", -->
-                    <!-- url: "http://govirtualstore.com/app/iOS/booking.php", -->
-                    <!-- data: book_flight_details, -->
-                    <!-- crossDomain: true, -->
-                    <!-- cache: false, -->
-                    <!-- dataType: "json", -->
-                    <!-- complete: function (data) { -->
-						<!-- console.log(data); -->
-						<!-- var str= data;	 -->
+ <!-- navigator.notification.alert('Error code: ' , null ,"asdas"); -->
+<!-- alert(book_flight_details); -->
+	 $.ajax({
+                    type: "POST",
+                    url: "http://govirtualstore.com/app/iOS/flightbooking.php",
+                    data: book_flight_details,
+                    crossDomain: true,
+                    cache: false,
+                    dataType: "json",
+                    complete: function (data) {
+						console.log(data);
+						var str= data;	
 					
 			
-			   <!-- alert("Booking unsuccessfull" ); -->
-			  
+			   alert("Flight Booking Request has been sent" );
+			   window.location="categories.html?user="+user_id+"&email="+email+"&fbpic="+fbpic+"";
 			
-                    <!-- } -->
+                    }
 					
-                <!-- }); -->
+                });
 
 }
 

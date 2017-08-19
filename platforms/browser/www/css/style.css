@@ -1,4 +1,4 @@
-@font-face {
+.ui-btn-left {    right: 0.4em;   }@font-face {
     font-family: 'open-sans-semibold';
     src: url('../fonts/opan-sans/OpenSans-Semibold-webfont.eot');
     src: url('../fonts/opan-sans/OpenSans-Semibold-webfontd41d.eot?#iefix') format('embedded-opentype'),

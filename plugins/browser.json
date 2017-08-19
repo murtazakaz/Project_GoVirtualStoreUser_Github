@@ -36,6 +36,9 @@
         },
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "com.msglobal.govirtualstore"
+        },
+        "cordova-plugin-spinner": {
+            "PACKAGE_NAME": "com.msglobal.govirtualstore"
         }
     },
     "dependent_plugins": {
