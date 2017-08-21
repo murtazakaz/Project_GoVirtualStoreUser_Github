@@ -239,7 +239,7 @@ var body = {
           $.ajax({
      type: "POST",
      //Set up your request URL and API Key.
-     url: "https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyBEJkQslHR6A1VGAJP320PRbAQKWYNjP_Y", 
+     url: "https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyBZtwqnVQ-hCiUQ0RyQlymJTowz08Fx3lw", 
      contentType: 'application/json', // Set Content-type: application/json
      dataType: 'json',
      // The query we want from Google QPX, This will be the variable we created in the beginning
@@ -249,10 +249,16 @@ var body = {
     //  console.log(JSON.stringify(data));
 	  var trip_option= data.trips.tripOption;
 	  loadhide();
+if(trip_option == null || trip_option.length ==0){
+  g = "<center><p style='color: white;'>No Flights Available</p></center>";
+							 $("#wrapper").append(g);
 
+}
+else{
        count = 0;
 	  console.log(trip_option);
-	  for(i in trip_option)
+	
+	for(i in trip_option)
 { 
 <!-- console.log('trips Option :' , trip_option[i] ,'Price:',trip_option[i].saleTotal); -->
 			 price = trip_option[i].saleTotal;
@@ -634,15 +640,18 @@ var body = {
 						}
 						
 			   }
-				flightdetails = "user="+user_id+"&email="+email+"&fbpic="+fbpic+"&trip_id="+trip_id+"&origin1="+origin1+"&destination1="+destination1+"&arrivalTime_Date1="+arrivalTime_Date1+"&arrival_time1="+arrival_time1+"&departureTime_Date1="+departureTime_Date1+"&departure_time1="+departure_time1+"&carrier_name1="+carrier_name1+"&carrier_no1="+carrier_no1+"&duration_time1="+duration_time1+"&cabin1="+cabin1+"&price="+price+"&stop=2&total_duration="+total_duration+"&origin2="+origin2+"&destination2="+destination2+"&arrivalTime_Date2="+arrivalTime_Date2+"&arrival_time2="+arrival_time2+"&departureTime_Date2="+departureTime_Date2+"&deperture_time2="+departure_time2+"&carrier_name2="+carrier_name2+"&carrier_no2="+carrier_no2+"&duration_time2="+duration_time2+"&cabin1="+cabin2+"&waiting_time="+waiting_time+"&origin3="+origin3+"&destination3="+destination3+"&arrivalTime_Date3="+arrivalTime_Date3+"&arrival_time3="+arrival_time3+"&departureTime_Date3="+departureTime_Date3+"&deperture_time3="+departure_time3+"&carrier_name3="+carrier_name3+"&carrier_no3="+carrier_no3+"&duration_time3="+duration_time3+"&cabin3="+cabin3+"&meal1="+meal1 +"&meal2="+meal2 +"&meal3=" + meal3;
+				flightdetails = "user="+user_id+"&email="+email+"&fbpic="+fbpic+"&trip_id="+trip_id+"&origin1="+origin1+"&destination1="+destination1+"&arrivalTime_Date1="+arrivalTime_Date1+"&arrival_time1="+arrival_time1+"&departureTime_Date1="+departureTime_Date1+"&departure_time1="+departure_time1+"&carrier_name1="+carrier_name1+"&carrier_no1="+carrier_no1+"&duration_time1="+duration_time1+"&cabin1="+cabin1+"&price="+price+"&stop=2&total_duration="+total_duration+"&origin2="+origin2+"&destination2="+destination2+"&arrivalTime_Date2="+arrivalTime_Date2+"&arrival_time2="+arrival_time2+"&departureTime_Date2="+departureTime_Date2+"&deperture_time2="+departure_time2+"&carrier_name2="+carrier_name2+"&carrier_no2="+carrier_no2+"&duration_time2="+duration_time2+"&cabin2="+cabin2+"&waiting_time="+waiting_time+"&origin3="+origin3+"&destination3="+destination3+"&arrivalTime_Date3="+arrivalTime_Date3+"&arrival_time3="+arrival_time3+"&departureTime_Date3="+departureTime_Date3+"&departure_time3="+departure_time3+"&carrier_name3="+carrier_name3+"&carrier_no3="+carrier_no3+"&duration_time3="+duration_time3+"&cabin3="+cabin3+"&meal1="+meal1 +"&meal2="+meal2 +"&meal3=" + meal3;
 			   
-			      tt =  "<a onclick=flightdetailpage(\""+flightdetails+"\")><div class='col-md-12 col-sm-12 col-xs-12' style='background-color:rgba(255, 160, 18, 0.5); border-radius: 10px !important; text-shadow: none;color: white; margin-bottom:5px;'><center><div class='col-md-4 col-sm-4 col-xs-4'><p id='deptime'>"+departure_time1+"</p><p id='deptorigin'><img src='img/flightdep.png'/>" +origin1+"</p><p>"+departure_date1+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='flightduration'>"+price+"</p><p><hr>"+carrier_name1+"  "+carrier_no1+"<hr></p><p id='flightstops'>"+total_duration+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='arrivaltime'>" +arrival_time3+"</p><p id='arrivaldest'><img src='img/flightarrival.png'/>"+destination3+"</p><p>"+arrival_date3+"</p></div></center></div></a><br><br><br><br><br>";
+			      tt =  "<a onclick='flightdetailpage(\""+flightdetails+"\")'><div class='col-md-12 col-sm-12 col-xs-12' style='background-color:rgba(255, 160, 18, 0.5); border-radius: 10px !important; text-shadow: none;color: white; margin-bottom:5px;'><center><div class='col-md-4 col-sm-4 col-xs-4'><p id='deptime'>"+departure_time1+"</p><p id='deptorigin'><img src='img/flightdep.png'/>" +origin1+"</p><p>"+departure_date1+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='flightduration'>"+price+"</p><p><hr>"+carrier_name1+"  "+carrier_no1+"<hr></p><p id='flightstops'>"+total_duration+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='arrivaltime'>" +arrival_time3+"</p><p id='arrivaldest'><img src='img/flightarrival.png'/>"+destination3+"</p><p>"+arrival_date3+"</p></div></center></div></a><br><br><br><br><br>";
 				  $("#wrapper1").append(tt);
+			   } else if(segment.length >= 4){
+			    g = "<center><p style='color: white;'>No Flights Available</p></center>";
+							 $("#wrapper").append(g);
 			   }
 			}
 			
  }
-	  
+	 } 
     },
       error: function(){
        //Error Handling for our request

@@ -293,7 +293,7 @@ arrival_date1 = arrivalTime_Date1.substr( 0 , arrivalTime_Date1.indexOf("T")  );
 
  departureTime_Date1 = getParameterByName('departureTime_Date1');
  departure_time1 = getParameterByName('departure_time1');
- departure_date1 = departureTime_Date.substr( 0 , departureTime_Date1.indexOf("T")  );	
+ departure_date1 = departureTime_Date1.substr( 0 , departureTime_Date1.indexOf("T")  );	
  carrier_name1 = getParameterByName('carrier_name1');
  carrier_no1 = getParameterByName('carrier_no1');
  cabin1 = getParameterByName('cabin1');
@@ -327,14 +327,35 @@ arrival_date3 = arrivalTime_Date3.substr( 0 , arrivalTime_Date3.indexOf("T")  );
  carrier_name3 = getParameterByName('carrier_name3');
  carrier_no3 = getParameterByName('carrier_no3');
  cabin3 = getParameterByName('cabin3');
- 
+ duration_time1 = getParameterByName('duration_time1');
+ duration_time2 = getParameterByName('duration_time2');
+ duration_time3 = getParameterByName('duration_time3');
+ waiting_time = getParameterByName('waiting_time');
+ meal1  = getParameterByName('meal1');
+ meal2  = getParameterByName('meal2');
+ meal3  = getParameterByName('meal3');
  
  flightdetails = "email="+email+"&trip_id="+trip_id+"&origin1="+origin1+"&destination1="+destination1+"&arrivalTime_Date1="+arrivalTime_Date1+"&arrival_time1="+arrival_time1+"&departureTime_Date1="+departureTime_Date1+"&departure_time1="+departure_time1+"&carrier_name1="+carrier_name1+"&carrier_no1="+carrier_no1+"&duration_time1="+duration_time1+"&cabin1="+cabin1+"&price="+price+"&stop=2&total_duration="+total_duration+"&origin2="+origin2+"&destination2="+destination2+"&arrivalTime_Date2="+arrivalTime_Date2+"&arrival_time2="+arrival_time2+"&departureTime_Date2="+departureTime_Date2+"&deperture_time2="+departure_time2+"&carrier_name2="+carrier_name2+"&carrier_no2="+carrier_no2+"&duration_time2="+duration_time2+"&cabin1="+cabin2+"&waiting_time="+waiting_time+"&origin3="+origin3+"&destination3="+destination3+"&arrivalTime_Date3="+arrivalTime_Date3+"&arrival_time3="+arrival_time3+"&departureTime_Date3="+departureTime_Date3+"&deperture_time3="+departure_time3+"&carrier_name3="+carrier_name3+"&carrier_no3="+carrier_no3+"&duration_time3="+duration_time3+"&cabin3="+cabin3+"&meal1="+meal1 +"&meal2="+meal2 +"&meal3=" + meal3;
- 
- showflight ="<div class='col-md-12 col-sm-12 col-xs-12' style='background-color:rgba(255, 160, 18, 0.5); border-radius: 10px !important; text-shadow: none;color: white; margin-bottom:5px;'><center><div class='col-md-4 col-sm-4 col-xs-4'><p id='deptime'>"+departure_time1+"</p><p id='deptorigin'><img src='img/flightdep.png'/>" +origin1+"</p><p>"+departure_date1+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='flightduration'>"+price+"</p><p><hr>"+carrier_name1+"  "+carrier_no1+"<hr></p><p id='flightstops'>"+total_duration+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='arrivaltime'>" +arrival_time1+"</p><p id='arrivaldest'><img src='img/flightarrival.png'/>"+destination1+"</p><p>"+arrival_date1+"</p></div></center></div><br><br><br><br><a onclick='bookflight(\""+flightdetails+"\")'><button id='btn' type='button' class='btn btn-primary' style=' background: #333;width: 100%;  border-color: black; text-shadow: none; color: white;' >Book Flight</button></a> ";
- 
- $("#wrapper").append(showflight);
- 
+ $.ajax({
+                type: "GET",
+                url: "https://iatacodes.org/api/v6/airlines.jsonp?api_key=a33d6719-c3bb-469c-8747-12da8ff944f3&code="+carrier_name1+"",
+                <!-- cache: false, -->
+                crossDomain: true,
+                dataType: "jsonp",
+                success: function (response) {
+                   
+				   str = response;
+				    carrierName = response.response[0].name;
+showflight = "<div class='col-md-12 col-sm-12 col-xs-12' style='background-color:rgba(255, 160, 18, 0.5); border-radius: 10px !important; text-shadow: none;color: white; margin-bottom:5px;'><center><div class='col-md-4 col-sm-4 col-xs-4'><p id='deptime'>"+departure_time1+"</p><p id='deptorigin'><img src='img/flightdep.png'/>" +origin1+"</p><p>"+departure_date1+"</p><p>"+meal1+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='flightduration'>"+price+"</p><p><hr>"+carrierName+" "+carrier_name1+"  "+carrier_no1+"<hr></p><p id='flightstops'>"+duration_time1+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='arrivaltime'>" +arrival_time1+"</p><p id='arrivaldest'><img src='img/flightarrival.png'/>"+destination1+"</p><p>"+arrival_date1+"</p><p>"+cabin1+"</p></div></center></div><br><br><br><br><br>";
+
+showflight1 = "<center><p style='color: white;'>Waiting Time</p></center><div class='col-md-12 col-sm-12 col-xs-12' style='background-color:rgba(255, 160, 18, 0.5); border-radius: 10px !important; text-shadow: none;color: white; margin-bottom:5px;'><center><div class='col-md-4 col-sm-4 col-xs-4'><p id='deptime'>"+departure_time1+"</p><p id='deptorigin'><img src='img/flightdep.png'/>" +origin2+"</p><p>"+departure_date2+"</p><p>"+meal2+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='flightduration'><br></p><p><hr>"+carrierName+" "+carrier_name2+"  "+carrier_no2+"<hr></p><p id='flightstops'>"+duration_time2+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='arrivaltime'>" +arrival_time2+"</p><p id='arrivaldest'><img src='img/flightarrival.png'/>"+destination2+"</p><p>"+arrival_date2+"</p><p>"+cabin2+"</p></div></center></div><br><br><br><br>"; 
+
+showflight2 = "<center><p style='color: white;'>Waiting Time </p></center><div class='col-md-12 col-sm-12 col-xs-12' style='background-color:rgba(255, 160, 18, 0.5); border-radius: 10px !important; text-shadow: none;color: white; margin-bottom:5px;'><center><div class='col-md-4 col-sm-4 col-xs-4'><p id='deptime'>"+departure_time3+"</p><p id='deptorigin'><img src='img/flightdep.png'/>" +origin3+"</p><p>"+departure_date3+"</p><p>"+meal3+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='flightduration'><br></p><p><hr>"+carrierName+" "+carrier_name3+"  "+carrier_no3+"<hr></p><p id='flightstops'>"+duration_time3+"</p></div><div class='col-md-4 col-sm-4 col-xs-4' > <p id='arrivaltime'>" +arrival_time3+"</p><p id='arrivaldest'><img src='img/flightarrival.png'/>"+destination3+"</p><p>"+arrival_date3+"</p><p>"+cabin3+"</p></div></center></div><br><br><br><br><br><br><br><a onclick='bookflight(\""+flightdetails+"\")'><button id='btn' type='button' class='btn btn-primary' style=' background: #333;width: 100%;  border-color: black; text-shadow: none; color: white;' >Book Flight</button></a> "; 
+
+ $("#wrapper").append(showflight); 
+ $("#wrapper").append(showflight1);
+ $("#wrapper").append(showflight2);
+ }});
 }
 
 //for connecting flights///

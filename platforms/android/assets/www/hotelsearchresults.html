@@ -180,11 +180,18 @@ request.onreadystatechange = function () {
     <!-- console.log('Status:', this.status); -->
     <!-- console.log('Headers:', this.getAllResponseHeaders()); -->
 	loadhide();
+	state = this.status;
+	<!-- alert(state); -->
+	if(state >= 400){g = "<center><p style='color: white;'>No Hotels Available</p></center>";
+							 $("#wrapper").append(g);}
+							 
    // console.log('Body:', this.responseText); 
 	data = this.responseText;
 	//console.log(JSON.stringify(data)); 
 	hotels = JSON.parse(data);
 	hotelResultSet = hotels.hotelResultSet;
+	
+	if(state == 200){
 	var tt;
 	for(i in hotelResultSet)
 	{
@@ -209,7 +216,8 @@ request.onreadystatechange = function () {
 	
 	<!-- }}); -->
 	}
-		
+	
+}	
 
   }
 };
