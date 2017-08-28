@@ -278,7 +278,8 @@ function callGoogle() {
 
 // This function gets data of user.
 function getDataProfile() {
-		loadshow();
+	var options = { dimBackground: true };
+			  SpinnerPlugin.activityStart("Fetching...", options); 
     var term = null;
     //  alert("getting user data="+accessToken);
     $.ajax({
@@ -289,7 +290,7 @@ function getDataProfile() {
         error: function(jqXHR, text_status, strError) {},
         success: function(data) {
             var item;
-	loadhide();
+	
             console.log(JSON.stringify(data));
             // Save the userprofile data in your localStorage.
             localStorage.gmailLogin = "true";
@@ -302,7 +303,7 @@ function getDataProfile() {
             localStorage.gmailProfilePicture = data.picture;
 			fbpic = data.picture;
             localStorage.gmailGender = data.gender;
-			alert("id" + data.id + "email"+ data.email);
+			// alert("id" + data.id + "email"+ data.email);
 			
 			
         }
@@ -314,9 +315,10 @@ function getDataProfile() {
                     data: {fbname: fbname, fbid: fbid},
                     success: function(data){
 					var str= data;	
-					
+		
+			  SpinnerPlugin.activityStop(); 			
 			if(str.Status == "success"){
-			loadhide();
+		
 			  // alert("Welcome, " + str.username );
 			   	window.location = "categories.html?user="+str.id+"&email="+fbname+"&fbpic="+fbpic+"";
 			}
